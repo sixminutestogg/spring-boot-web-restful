@@ -16,6 +16,7 @@ public class SpringBootWebRestfulApplication {
 		SpringApplication.run(SpringBootWebRestfulApplication.class, args);
 	}
 
+
 	@Bean
 	public ViewResolver myViewResolver(){
 		return  new MyViewReslover();
