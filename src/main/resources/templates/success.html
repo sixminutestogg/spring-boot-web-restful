@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>成功</h1>
+    <!--th:text 经div里面的文本值设置为指定的值-->
+    <!--/*@thymesVar id="hello" type=""*/-->
+    <div id="div01" class="class" th:id="${hello}" th:class="${hello}" th:text="${hello}">这是欢迎信息</div>
+    <div th:text="${hello}"></div>
+    <div th:utext="${hello}"></div>
+    <hr/>
+    <!--/*@thymesVar id="users" type=""*/-->
+    <!--th:each 会每次遍历都会生成当前这个标签-->
+    <h4 th:text="${user}" th:each="user:${users}">user</h4>
+    <hr/>
+    <tr th:each="user:${users}">
+        <td th:text="${user}">姓名</td>
+    </tr>
+    <hr/>
+    <h4>
+        <span  th:each="user:${users}">[[${user}]]</span>
+    </h4>
+</body>
+</html>

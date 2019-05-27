@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Director | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <meta name="description" content="Developed By M Abdur Rokib Promy">
+    <meta name="keywords" content="Admin, Bootstrap 3, Template, Theme, Responsive">
+    <!-- bootstrap 3.0.2 -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+          <style type="text/css">
+
+          </style>
+      </head>
+      <script type="text/javascript">
+      $(function(){
+    	  $.ajaxSetup({
+	    	  async: false
+	    	  }); 
+      })
+	     
+      </script>
+      <body class="skin-black">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="index.html" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                GoldShop
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">  
+                        <!-- User Account: style can be found in dropdown.less -->
+								<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="fa fa-user"></i>
+									<span>名字 <i class="caret"></i></span>
+								</a>
+								<ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+									<li class="dropdown-header text-center">账户</li>
+
+															<li>
+										<a href="#">
+										<i class="fa fa-clock-o fa-fw pull-right"></i>
+											<span class="badge badge-success pull-right" id="u"></span>用户</a>
+										<a href="#">
+										<i class="fa fa-envelope-o fa-fw pull-right"></i>
+											<span class="badge badge-danger pull-right" id="o"></span>订单 </a>
+										<a href="#"><i class="fa fa-magnet fa-fw pull-right"></i>
+											<span class="badge badge-info pull-right" id="p">3</span> 商品</a>
+										<a href="#"><i class="fa fa-question fa-fw pull-right"></i> <span class=
+											"badge pull-right" id="c">11</span> 评论</a>
+									</li>
+ <script src="asserts/js/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	$.getJSON("../UserServlet.do",{"op":"20"},function(u){
+		$("#u").html(u);
+	});
+	$.getJSON("../OrderServlet.do",{"op":"5"},function(o){
+		$("#o").empty().append(o);
+	});
+	$.getJSON("../ProductServlet.do",{"op":"12"},function(p){
+		$("#p").empty().append(p);
+	});
+	$.getJSON("../EvaluateServlet.do",{"op":"4"},function(e){
+		$("#c").empty().append(e);
+	});
+}
+);
+</script>
+									<li class="divider"></li>
+
+										<li>
+											<a href="#">
+											<i class="fa fa-user fa-fw pull-right"></i>
+												我的描述
+											</a>											
+											</li>
+
+											<li class="divider"></li>
+
+											<li>
+												<a href="#" id="lo"><i class="fa fa-ban fa-fw pull-right" ></i> 注销</a>
+												
+											</li>
+											<script>
+											$(function(){
+												$("body").on("click","#lo", function(){
+													$.post("../UserServlet.do",{"op":"8"},function(mes){
+														if(mes==1){
+														window.location.href="../pre/index.html";}
+													},"json")})
+											})
+											</script>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</header>
+
+			<div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                    <p>&nbsp;</p>
+                        <div class="pull-left image">
+                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                       <p id="name"></p>
+<script>$(function(){
+	 $.post("../UserServlet.do?op=15",function(img){
+		if(img!=null){
+			var m=mes
+			for(var i=0;i<img.length;i++){
+				$("#img").attr("src","img/"+mes[i].img) 
+			}
+			
+		}else{
+			alert("djkf")
+		} 
+	},"json")
+	$.getJSON("../UserServlet.do?op=7",function(data){						 
+		if(data!=null&&data.equa){
+			$("#name").empty().append("<a href=\"../pre/login.html\" >"+data+"</a>");
+		}else{
+			$("#name").empty().append("<a href=\"../pre/login.html\" >"+data+"&nbsp;&nbsp;&nbsp;<a id=\"lo\">注销</a></a>");
+		}
+	});
+	$(function(){
+		$("body").on("click","#lo", function(){
+			$.post("../UserServlet.do",{"op":"8"},function(mes){
+				if(mes==1){
+				window.location.href="index.html";}
+			},"json")})
+	})
+});</script>
+
+
+                            <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                     <ul class="sidebar-menu">
+                                <li class="active">
+                                    <a href="index.html">
+                                        <i class="fa fa-dashboard"></i> <span>商店图表</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="general.html">
+                                        <i class="fa fa-gavel"></i> <span>商店用户管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="product.html">
+                                        <i class="fa fa-gavel"></i> <span>商店商品管理</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="generaldingdan.html">
+                                        <i class="fa fa-list"></i> <span>商店订单管理</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="generalpinglun.html">
+                                        <i class="fa fa-music"></i> <span>商店评论管理</span>
+                                    </a>
+                                </li>
+                                 <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="fa fa-gavel"></i> <span>商店未来规划</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </section>
+                <!-- /.sidebar -->
+            </aside>
+                    </aside>
+                    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费网站模板</a></div>
+                <aside class="right-side">
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="row" style="margin-bottom:5px;">
+
+
+                           <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-red"><i class="fa fa-check-square-o"></i></span>
+                                <div class="sm-st-info">
+                                    <span id="u2">1</span>
+                                   用户数
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-envelope-o"></i></span>
+                                <div class="sm-st-info">
+                                    <span id="o2"></span>
+                                    订单数
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-blue"><i class="fa fa-dollar"></i></span>
+                                <div class="sm-st-info">
+                                    <span id="p2"></span>
+                                    货物数
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-paperclip"></i></span>
+                                <div class="sm-st-info">
+                                    <span id="c2"></span>
+                                    评价数
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ <script src="asserts/js/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function(){
+	 $.ajaxSetup({
+   	  async: false
+   	  });
+	$.getJSON("../UserServlet.do",{"op":"20"},function(u){
+		$("#u2").html(u);
+	});
+	$.getJSON("../OrderServlet.do",{"op":"5"},function(o){
+		$("#o2").empty().append(o);
+	});
+	$.getJSON("../ProductServlet.do",{"op":"12"},function(p){
+		$("#p2").empty().append(p);
+	});
+	$.getJSON("../EvaluateServlet.do",{"op":"4"},function(e){
+		$("#c2").empty().append(e);
+	});
+}
+);
+</script> 
+
+                    <!-- Main row -->
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <!--earning graph start-->
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    玉石种类库存数量(柱状图)
+                                </header>
+                                 <div class="panel-body">                                    
+                                    <div id="linechart" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+                                </div>
+                            </section>
+                            <!--earning graph end-->
+
+                                    </div>
+                                    <div class="col-lg-4">
+
+                                        <!--chat start-->
+                                        <section class="panel">
+                                            <header class="panel-heading">
+                                                通知
+                                            </header>
+                                                <div class="panel-body" id="noti-box">
+                                                </div>
+                                        </section>
+
+                                    </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <section class="panel">
+                              <header class="panel-heading">
+                               商品	（饼状图）
+                             </header>
+                            <div class="panel-body table-responsive">
+                                <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+                  			</div>
+                            </section>
+                        </div>
+					<!--end col-6 -->
+					<div class="col-md-4">
+						<section class="panel">
+							<header class="panel-heading"> 消息 </header>
+							<div class="panel-body" id="news">
+								
+							</div>
+						</section>
+					</div>
+
+                    </div>
+              <!-- row end -->
+                </section><!-- /.content -->
+            </aside><!-- /.right-side -->
+
+        </div><!-- ./wrapper -->
+
+
+        <!-- jQuery 2.0.2 -->
+        <script src="js/Chart.min.js" type="text/javascript"></script>
+		<script src="js/highcharts.js"></script>  
+		
+	   	<!-- 语言js文件 -->
+     <script type="text/javascript" src="locale/easyui-lang-zh_CN.js"></script>	
+     
+        <!-- Director for demo purposes -->
+        <script type="text/javascript">
+            $('input').on('ifChecked', function(event) {
+                // var element = $(this).parent().find('input:checkbox:first');
+                // element.parent().parent().parent().addClass('highlight');
+                $(this).parents('li').addClass("task-done");
+                console.log('ok');
+            });
+            $('input').on('ifUnchecked', function(event) {
+                // var element = $(this).parent().find('input:checkbox:first');
+                // element.parent().parent().parent().removeClass('highlight');
+                $(this).parents('li').removeClass("task-done");
+                console.log('not');
+            });
+
+        </script>
+        <script>
+            $('#noti-box').slimScroll({
+                height: '400px',
+                size: '5px',
+                BorderRadius: '5px'
+            });
+
+            $('input[type="checkbox"].flat-grey, input[type="radio"].flat-grey').iCheck({
+                checkboxClass: 'icheckbox_flat-grey',
+                radioClass: 'iradio_flat-grey'
+            });
+</script>
+        <script src="asserts/highcharts.js" th:src="@{/asserts/js/highcharts.js}"></script>
+        <script src="asserts/code/modules/exporting.js" th:src="@{/asserts/js/exporting.js}"></script>
+        <script src="asserts/code/modules/export-data.js" th:src="@{/asserts/js/export-data.js}"></script>
+        <script src="asserts/js/jquery-3.2.1.slim.min.js" type="text/javascript"></script>
+        <script src="asserts/code/modules/export-data.js" th:src="@{/asserts/js/Chart.min.js}"></script>
+
+<script type="text/javascript">
+$(function(){
+    var chart;
+    var total;
+    $(document).ready(function(){
+        Highcharts.setOptions({
+            global:{
+                useUTC:true
+            }
+        });
+        $.ajax({
+            url:"[[@{/test}]]",
+            type:"POST",
+            dataType:"json",
+            //async:false,
+            success:function(msg){
+               // alert(msg);
+                total=msg.mapchart;
+                var jsondata=[];
+                for(var i in total){
+                	jsondata.push([i,total[i]]);
+                }
+                chart=new Highcharts.Chart({
+                    chart:{
+                        renderTo:'linechart',//图表加载的位置，是页面上的一个DOM对象
+                        plotBackgroundColor: null,
+				        plotBorderWidth: null,
+				        plotShadow: false,
+				        type: 'pie'
+					   
+                    },
+                    title:{
+                        text:'库存种类'//为图表配置标题
+                    },
+                    subtitle:{
+                        text:'总数量'//为图表配置副标题
+                    },
+                    credits:{
+                    	text:'www.baidu.cn'
+                    },
+                    tooltip:{//配置提示信息
+                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions:{
+                       pie: {
+				            allowPointSelect: true,
+				            cursor: 'pointer',
+				            dataLabels: {
+				                enabled: true,
+				                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+				                style: {
+				                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+				                }
+				            },
+				            showInLegend:true
+    						},
+                    },
+                    
+                    series: [{
+                    	type: 'pie',
+                        name: '比例',
+                        data: jsondata
+				    }]
+                });
+        }
+    });
+    });
+});
+         
+</script>
+	    
+<script type="text/javascript">
+$(function(){
+    var chart;
+    var total;
+    $(document).ready(function(){
+    	Highcharts.setOptions({
+            global:{
+                useUTC:true
+            }
+        });
+        $.ajax({
+            url:"../ProductServlet.do?op=7",
+            type:"POST",
+            dataType:"json",
+            //async:false,
+            success:function(msg){
+               // alert(msg);
+                total=msg;
+                chart=new Highcharts.Chart({
+                    chart:{
+                        renderTo:'container',  //图表加载的位置，是页面上的一个DOM对象
+                        type: 'column',    //图片类型  column表示柱状图
+                        backgroundColor:null,
+					   defaultSeriesType:'pie',
+                    },
+                    title:{
+                        text:'商品库存/价格表'//为图表配置标题
+                    },
+                    subtitle:{
+                        text:''//为图表配置副标题
+                    },
+                    xAxis:{//配置要在 X 轴显示的项
+                        categories:['蜜蜡手串','富贵在握','年年有余','滴水之情','富贵荣华','冰种手镯', '青龙令', '如意吊坠', '喜上眉梢', '府上有龙', '保山手串','大日如来','战神·关羽','镯·紫梦幽兰','手串·江山在握','镯·柔情似水','金玉满堂','福寿饕餮']
+                    },
+                    yAxis:{//配置要在 Y 轴显示的项
+                        min:0,
+                        title:{
+                            text:'数量(个)/价格(元)'
+                          
+                        }
+                    },
+                    legend:{//展示方式
+                        layout:'vertical',
+                        backgroundColor:'#FFFFFF',
+                        align:'left',
+                        verticalAlign:'top',
+                        x:100,
+                        y:70,
+                        floating:true,
+                        shadow:true
+                    },
+                    tooltip:{//配置提示信息
+                        formatter:function(){
+                            return ''+
+                                this.x+': '+this.y;
+                        }
+                    },
+                    plotOptions:{
+                        column:{
+                            pointPadding:0.2,
+                            borderWidth:0
+                        }
+                    },
+                    credits: { 
+					enabled: false //不显示LOGO 
+					},
+                    series:total//配置图表要展示的数据
+                });
+        }
+    });
+    });
+});
+
+
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Highcharts Example</title>
+
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+<script  th:src="@{/asserts/js/highcharts.js}"></script>
+<script  th:src="@{/asserts/js/exporting.js}"></script>
+<script  th:src="@{/asserts/js/export-data.js}"></script>
+<script  th:src="@{/asserts/js/jquery-3.2.1.min.js}"></script>
+<script  th:src="@{/asserts/js/Chart.min.js}"></script>
+<script  th:src="@{/asserts/js/bootstrap.min.js}"></script>
+
+
+
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="linechart" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto;border: 1px solid red"></div>
+
+<script type="text/javascript">
+    $(function(){
+        var chart;
+        var total;
+        $(document).ready(function(){
+            Highcharts.setOptions({
+                global:{
+                    useUTC:true
+                }
+            });
+            $.ajax({
+                url:'[[@{/test}]]',
+                type:"POST",
+//                dataType:"json",
+                //async:false,
+                success:function(msg){
+                     //alert(msg);
+                total=[[${mapchart}]];
+                    var jsondata=[];
+                    for(var i in total){
+                        jsondata.push([i,total[i]]);
+                    }
+                    chart=new Highcharts.Chart({
+                        chart:{
+                            renderTo:'linechart',//图表加载的位置，是页面上的一个DOM对象
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+
+                        },
+                        title:{
+                            text:'库存种类'//为图表配置标题
+                        },
+                        subtitle:{
+                            text:'总数量'//为图表配置副标题
+                        },
+                        credits:{
+                            text:'www.baidu.cn'
+                        },
+                        tooltip:{//配置提示信息
+                            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions:{
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                    style: {
+                                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                    }
+                                }
+//                                showInLegend:true
+                            }
+                        },
+
+                        series: [{
+                            type: 'pie',
+                            name: '比例',
+                            data: jsondata
+                        }]
+                    });
+                }
+            });
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares in January, 2018'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'Chrome',
+                y: 61.41,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Internet Explorer',
+                y: 11.84
+            }, {
+                name: 'Firefox',
+                y: 10.85
+            }, {
+                name: 'Edge',
+                y: 4.67
+            }, {
+                name: 'Safari',
+                y: 4.18
+            }, {
+                name: 'Sogou Explorer',
+                y: 1.64
+            }, {
+                name: 'Opera',
+                y: 1.6
+            }, {
+                name: 'QQ',
+                y: 1.2
+            }, {
+                name: 'Other',
+                y: 2.61
+            }]
+        }]
+    });
+</script>
+</body>
+</html>
