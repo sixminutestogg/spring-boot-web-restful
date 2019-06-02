@@ -51,40 +51,4 @@ public class HelloController
         return  "pie";
     }
 
-//    @RequestMapping("/chart")
-//    public String chart(Map<String,Object> map){
-////        Map<String, Object>map8=new HashMap<String, Object>();
-////        List<Product>list8=pbiz.stocklist();
-////        for(int i=0;i<list8.size();i++){
-////            map8.put(list8.get(i).getCategorylevel1(), list8.get(i).getStock());
-////        }
-////        JSONObject object=new JSONObject(map8);
-////
-////            response.setContentType("application/json;charset=utf-8");
-////            out.print(object);
-////				/*System.out.println("key"+object);*/
-////        return  null;
-//    }
-
-//    @RequestMapping("/zhuzi")
-//        public String zhuzi(){
-//        List<Integer> allstock=new ArrayList<Integer>();
-//        List<Integer>allstock1=new ArrayList<Integer>();
-//        List<Product>list7=pbiz.list(null);
-//        for(int i=0;i<list7.size();i++){
-//            allstock.add(list7.get(i).getStock());
-//            allstock1.add(list7.get(i).getPrice());
-//        }
-//        MapList m=new MapList("???",allstock);
-//        MapList n=new MapList("???",allstock1);
-//        List<MapList>list71=new ArrayList<MapList>();
-//        list71.add(m);
-//        list71.add(n);
-//        JSONArray array=new JSONArray();
-//        array.addAll(list71);
-//        String str7=array.toString();
-//			/*System.out.println(str7);*/
-//        out.print(str7);
-//        return  null;
-//        }
 }
