@@ -3,10 +3,19 @@ package com.example.springbootwebrestful.entities;
 import java.sql.Timestamp;
 
 public class User {
+    private Integer id;
     private String fullName;
     private String shirtName;
     private String passWord;
-    private Timestamp update;
+    private String creatdate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;
@@ -32,21 +41,22 @@ public class User {
         this.passWord = passWord;
     }
 
-    public Timestamp getUpdate() {
-        return update;
+    public String getCreatdate() {
+        return creatdate;
     }
 
-    public void setUpdate(Timestamp update) {
-        this.update = update;
+    public void setCreatdate(String creatdate) {
+        this.creatdate = creatdate;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "fullName='" + fullName + '\'' +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
                 ", shirtName='" + shirtName + '\'' +
                 ", passWord='" + passWord + '\'' +
-                ", update=" + update +
+                ", creatdate='" + creatdate + '\'' +
                 '}';
     }
 }

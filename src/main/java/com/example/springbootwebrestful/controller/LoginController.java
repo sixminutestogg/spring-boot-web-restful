@@ -1,7 +1,9 @@
 package com.example.springbootwebrestful.controller;
 
 import com.example.springbootwebrestful.entities.User;
+import com.example.springbootwebrestful.service.LoginService;
 import com.example.springbootwebrestful.service.impl.LoginServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
+    @Autowired
     private LoginServiceImpl loginServiceImpl;
 
     //@PostMapping("/user/login")
