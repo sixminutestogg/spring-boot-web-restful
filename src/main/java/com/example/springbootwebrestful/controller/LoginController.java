@@ -2,7 +2,6 @@ package com.example.springbootwebrestful.controller;
 
 import com.example.springbootwebrestful.entities.User;
 import com.example.springbootwebrestful.service.LoginService;
-import com.example.springbootwebrestful.service.impl.LoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +17,7 @@ import java.util.Map;
 public class LoginController {
 
     @Autowired
-    private LoginServiceImpl loginServiceImpl;
+    private LoginService loginService;
 
     //@PostMapping("/user/login")
     @RequestMapping("/user/login")
@@ -29,7 +28,7 @@ public class LoginController {
         Map<String, Object> parm = new HashMap<>();
         parm.put("username", username);
         parm.put("password", password);
-        User user = loginServiceImpl.login(parm);
+        User user = loginService.login(parm);
 
         if (user!=null) {
             map.addAttribute("user", user);
